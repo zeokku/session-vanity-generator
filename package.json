@@ -6,6 +6,7 @@
   "author": "luty",
   "description": "",
   "scripts": {
+    "start": "node --experimental-specifier-resolution=node .",
     "watch": "tsc --watch"
   },
   "keywords": [],

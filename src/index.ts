@@ -1,7 +1,7 @@
 // https://github.dev/oxen-io/session-desktop/blob/afb9a46d48bd797333964b6a25d33535c0d9e618/ts/util/accountManager.ts#L34
 
 import libSodiumWrappers, { KeyPair } from "libsodium-wrappers-sumo";
-import { mn_decode, mn_encode } from "mnemonic";
+import { mn_decode, mn_encode } from "./mnemonic";
 
 async function getSodiumRenderer(): Promise<typeof libSodiumWrappers> {
   await libSodiumWrappers.ready;
@@ -71,8 +71,10 @@ const generateMnemonicAndKeyPair = async () => {
   //   setGeneratedRecoveryPhrase(mnemonic);
   //   setHexGeneratedPubKey(newHexPubKey); // our 'frontend' sessionID
   // }
+
+  return newHexPubKey;
 };
 
-let res = await sessionGenerateKeyPair(new TextEncoder().encode("0".repeat(32)));
+let res = await generateMnemonicAndKeyPair();
 
 console.log(res);

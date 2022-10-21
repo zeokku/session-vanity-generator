@@ -1,5 +1,7 @@
 import crc32 from "buffer-crc32";
 
+import words from "./english.json";
+
 class MnemonicError extends Error {}
 
 /*
@@ -128,7 +130,7 @@ mnWords.english = {
   prefixLen: 3,
   // tslint:disable-next-line: non-literal-require
   // tslint:disable-next-line: no-require-imports
-  words: require("./english.json"),
+  words,
   truncWords: [],
 };
 
