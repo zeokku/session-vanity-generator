@@ -14,7 +14,7 @@ async function generateSeed(size = 16) {
   // Note: 4 bytes are converted into 3 seed words, so length 12 seed words
   // (13 - 1 checksum) are generated using 12 * 4 / 3 = 16 bytes.
   //   const seedSize = 32;
-  if (size % 8) throw "Seed size must be divisible by 8";
+  if (size % 4) throw "Seed size must be divisible by 4";
   const seed = sodium.randombytes_buf(size);
 
   return seed;
