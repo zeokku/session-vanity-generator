@@ -1,0 +1,53 @@
+lockfileVersion: 5.4
+
+specifiers:
+  '@types/libsodium-wrappers-sumo': ^0.7.5
+  '@types/node': ^18.11.3
+  buffer-crc32: ^0.2.13
+  libsodium-wrappers-sumo: ^0.7.10
+  typescript: 4.9.1-beta
+
+dependencies:
+  buffer-crc32: 0.2.13
+  libsodium-wrappers-sumo: 0.7.10
+
+devDependencies:
+  '@types/libsodium-wrappers-sumo': 0.7.5
+  '@types/node': 18.11.3
+  typescript: 4.9.1-beta
+
+packages:
+
+  /@types/libsodium-wrappers-sumo/0.7.5:
+    resolution: {integrity: sha512-CL7rmLxw28H/FpFUnMu5BzzRsE+ICxHBpRoaY8ks+3HMsCJdA/Vp809sj+qNhw64Ht0OEnfoN3BC1sHwagoVaw==}
+    dependencies:
+      '@types/libsodium-wrappers': 0.7.10
+    dev: true
+
+  /@types/libsodium-wrappers/0.7.10:
+    resolution: {integrity: sha512-BqI9B92u+cM3ccp8mpHf+HzJ8fBlRwdmyd6+fz3p99m3V6ifT5O3zmOMi612PGkpeFeG/G6loxUnzlDNhfjPSA==}
+    dev: true
+
+  /@types/node/18.11.3:
+    resolution: {integrity: sha512-fNjDQzzOsZeKZu5NATgXUPsaFaTxeRgFXoosrHivTl8RGeV733OLawXsGfEk9a8/tySyZUyiZ6E8LcjPFZ2y1A==}
+    dev: true
+
+  /buffer-crc32/0.2.13:
+    resolution: {integrity: sha512-VO9Ht/+p3SN7SKWqcrgEzjGbRSJYTx+Q1pTQC0wrWqHx0vpJraQ6GtHx8tvcg1rlK1byhU5gccxgOgj7B0TDkQ==}
+    dev: false
+
+  /libsodium-sumo/0.7.10:
+    resolution: {integrity: sha512-xvYHwrTPvw9EFvX77x6gFiB7vdTv4+9xpM5DCkg9FJwysHoBO7sYXxXjy5L2gQSuWaINbtjBUry9eCg/+nYwCA==}
+    dev: false
+
+  /libsodium-wrappers-sumo/0.7.10:
+    resolution: {integrity: sha512-1noz8Mcl/LUzO/iSO/FJzoJyIaPwxl+/+E4CoTIXtsPiEEXQx2sxalmrVWxteLpynqgX0ASo28ChB9NEVRh0Pg==}
+    dependencies:
+      libsodium-sumo: 0.7.10
+    dev: false
+
+  /typescript/4.9.1-beta:
+    resolution: {integrity: sha512-D4c0t1+sMOS5Hy8DQsGFfEYUuKzolXhf+7e/N0Td5etBPflEYzVwWLBrbVgHpLpLC53OJQCtxk31+NWO2SBPaA==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
+    dev: true
