@@ -19,3 +19,5 @@ Default seed length is `16`. The seed length must be divisible by 4. Currently a
 ### Example:
 
 `pnpm run dry 00`
+
+Technically you can run multiple instances to simulate multithreading and thus speed up the brute force.
