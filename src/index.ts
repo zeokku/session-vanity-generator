@@ -7,8 +7,6 @@ await libSodiumWrappers.ready;
 
 const sodium = libSodiumWrappers;
 
-console.clear();
-
 /**
  * @param size must be divisible by 8
  */
@@ -47,24 +45,32 @@ async function generateKeyPair(seed: Uint8Array) {
   };
 }
 
-let prefixByte = Buffer.from("55", "hex").readUint8();
-let prefixTargetLength = 2;
+let prefixHex = process.argv[2] || "55";
+let prefixByte = Buffer.from(prefixHex, "hex").readUint8();
+let prefixLength = 1;
+
+let mnemonicLength = parseFloat(process.argv[3]);
+mnemonicLength = isNaN(mnemonicLength) ? 16 : mnemonicLength;
+
+console.log(`Starting a search for addresses that start with "${prefixHex}" byte`);
+console.log("Seed size is set to", mnemonicLength);
 
 while (true) {
-  let seed = await generateSeed();
+  let seed = await generateSeed(mnemonicLength);
   let { pub } = await generateKeyPair(seed);
 
   let p = 0;
-  for (; p < prefixTargetLength; p += 1) {
+  for (; p < prefixLength; p += 1) {
     if (pub[p] !== prefixByte) {
       break;
     }
   }
 
-  if (p === prefixTargetLength) {
+  if (p === prefixLength) {
+    console.log("Length", prefixLength);
     console.log("05" + Buffer.from(pub).toString("hex"));
     console.log(deriveMnemonic(seed));
 
-    break;
+    prefixLength += 1;
   }
 }
