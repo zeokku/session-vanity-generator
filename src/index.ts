@@ -44,18 +44,19 @@ async function sessionGenerateKeyPair(seed: ArrayBuffer): Promise<SessionKeyPair
   return x25519KeyPair;
 }
 
-async function generateMnemonic() {
+async function generateMnemonic(seedSize = 16) {
   // Note: 4 bytes are converted into 3 seed words, so length 12 seed words
   // (13 - 1 checksum) are generated using 12 * 4 / 3 = 16 bytes.
-  const seedSize = 16;
+  //   const seedSize = 32;
+  if (seedSize % 8) throw "Seed size must be divisible by 8";
+
   const seed = (await getSodiumRenderer()).randombytes_buf(seedSize);
   const hex = Buffer.from(seed).toString("hex"); // toHex(seed);
   return mn_encode(hex);
 }
 
-const generateMnemonicAndKeyPair = async () => {
+const generateMnemonicAndKeyPair = async (mnemonic: string) => {
   // if (generatedRecoveryPhrase === '') {
-  const mnemonic = await generateMnemonic();
 
   let seedHex = mn_decode(mnemonic);
   // handle shorter than 32 bytes seeds
@@ -75,6 +76,9 @@ const generateMnemonicAndKeyPair = async () => {
   return newHexPubKey;
 };
 
-let res = await generateMnemonicAndKeyPair();
+let mnemonic = await generateMnemonic();
+let pubAddress = await generateMnemonicAndKeyPair(mnemonic);
 
-console.log(res);
+console.clear();
+console.log(mnemonic, mnemonic.split(/\s/g).length);
+console.log(pubAddress);

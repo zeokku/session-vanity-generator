@@ -7,6 +7,7 @@
   "description": "",
   "scripts": {
     "start": "node --experimental-specifier-resolution=node .",
+    "dry": "tsc && node --experimental-specifier-resolution=node .",
     "watch": "tsc --watch"
   },
   "keywords": [],
