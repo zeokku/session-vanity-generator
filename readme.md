@@ -4,6 +4,10 @@ Allows to generate public addresses with custom prefix which consists of a speci
 
 ## Installation:
 
+`git clone https://github.com/zeokku/session-vanity-generator.git`
+
+`cd session-vanity-generator`
+
 `pnpm i`
 
 ## Usage
