@@ -53,34 +53,24 @@ async function generateKeyPair(seed: Uint8Array) {
   };
 }
 
-let prefixHex = process.argv[2] || "55";
-let prefixByte = Buffer.from(prefixHex, "hex").readUint8();
-let prefixLength = 1;
-
+let vanityPrefix = process.argv[2] || "1234";
 let seedLength = parseFloat(process.argv[3]);
 seedLength = isNaN(seedLength) ? 16 : seedLength;
 
 if (seedLength % 4) throw "Seed size must be divisible by 4";
 
-console.log(`Starting a search for addresses that start with "${prefixHex}" byte`);
-console.log("Seed size is set to", seedLength);
+console.log("Seed size set to", seedLength);
+console.log(`Starting a search for addresses that start with '${vanityPrefix}'...`);
 
-while (true) {
-  let seed = await generateSeed(seedLength);
+let newHexPubKey = '';
+let seed;
+
+while (newHexPubKey.substring(0, vanityPrefix.length) !== vanityPrefix) {
+  seed = await generateSeed(seedLength);
   let pub = await derivePublicKey(seed);
-
-  let p = 0;
-  for (; p < prefixLength; p += 1) {
-    if (pub[p] !== prefixByte) {
-      break;
-    }
-  }
-
-  if (p === prefixLength) {
-    console.log("Length", prefixLength);
-    console.log("05" + Buffer.from(pub).toString("hex"));
-    console.log(deriveMnemonic(seed));
-
-    prefixLength += 1;
-  }
+  newHexPubKey = Buffer.from(pub).toString("hex");
 }
+
+let mnemonic = await deriveMnemonic(seed);
+console.log("Session id: 05" + newHexPubKey);
+console.log("Recovery phrase: " + mnemonic);
